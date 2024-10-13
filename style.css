@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, sans-serif;
+    user-select: none;
+}
+
+:root {
+    --eerie-black: #1C1C1C;
+    --dark-liver: #505050;
+    --light-gray: #D4D4D2;
+    --vivid-gamboge: #FF9500;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: hsl(0, 0%, 90%);
+}
+
+.calculator-container {
+    min-width: 400px;
+    min-height: 800px;
+
+    background-color: var(--eerie-black);
+    box-shadow: 5px 5px 10px hsl(0, 0%, 25%);
+
+    border-radius: 50px;
+}
+
+    .status-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 1.25rem 3rem;
+    }
+
+        .time {
+            color: white;
+            font-size: 1rem;
+        }
+
+        .icons-container {
+            display: flex;
+            gap: 5px;
+        }
+
+            .icon {
+                width: 1.25rem;
+                height: 1.25rem;
+            }
+
+    #display {
+        height: 250px;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+
+        margin-right: 35px;
+        padding-bottom: 10px;
+
+        color: white;
+        font-size: 6rem;
+        text-align: right;
+    }
+
+    .buttons-container {
+        display: flex;
+        justify-content: center;
+    }
+
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+            .button {
+                width: 80px;
+                height: 80px;
+
+                border: none;
+                border-radius: 50%;
+
+                cursor: pointer;
+
+                font-size: 2rem;
+                color: white;
+
+                transition: filter 0.3s transform 0.3s;
+            }
+
+            .number,
+            .zero,
+            .decimal {
+                background-color: var(--dark-liver);
+            }
+
+            .clear,
+            .plus-minus,
+            .percent {
+                background-color: var(--light-gray);
+            }
+
+            .operand,
+            .equals {
+                background-color: var(--vivid-gamboge);
+                padding-bottom: 5px;
+            }
+
+            .span-two {
+                grid-column: span 2;
+                width: 100%;
+
+                border-radius: 75px;
+            }
+
+            button:hover {
+                filter: brightness(110%);
+                transform: scale(1.01);
+            }
