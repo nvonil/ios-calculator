@@ -30,15 +30,59 @@ body {
     background-color: var(--eerie-black);
     box-shadow: 5px 5px 10px hsl(0, 0%, 25%);
 
+    border: 8px solid black;
     border-radius: 50px;
+
+    position: relative;
 }
+
+    .notch-container {
+        background-color: black;
+
+        width: 175px;
+        height: 30px;
+
+        border: 50px;
+        border-radius: 0 0 15px 15px;
+
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .speaker {
+            background-color: var(--eerie-black);
+
+            width: 45px;
+            height: 5px;
+            
+            border-radius: 10px;
+        }
+
+        .camera {
+            background-color: var(--eerie-black);
+
+            width: 15px;
+            height: 15px;
+
+            border-radius: 50%;
+
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: calc(50% + 35px);
+        }
 
     .status-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
 
-        padding: 1.25rem 3rem;
+        padding: 0.5rem 2rem 0.5rem 3rem;
     }
 
         .time {
@@ -68,6 +112,7 @@ body {
 
         color: white;
         font-size: 6rem;
+        font-weight: 300;
         text-align: right;
     }
 
@@ -92,9 +137,10 @@ body {
                 cursor: pointer;
 
                 font-size: 2rem;
+                font-weight: 300;
                 color: white;
 
-                transition: filter 0.3s transform 0.3s;
+                transition: filter 0.3s;
             }
 
             .number,
@@ -113,6 +159,8 @@ body {
             .equals {
                 background-color: var(--vivid-gamboge);
                 padding-bottom: 5px;
+
+                font-size: 3rem;
             }
 
             .span-two {
@@ -124,5 +172,24 @@ body {
 
             button:hover {
                 filter: brightness(110%);
-                transform: scale(1.01);
             }
+
+            button:active {
+                transform: scale(1.025);
+            }
+
+    .home-bar {
+        width: 175px;
+        height: 5px;
+
+        border-radius: 10px;
+
+        background-color: white;
+
+        position: absolute;
+        left: 50%;
+        bottom: 15px;
+        transform: translate(-50%);
+
+        cursor: pointer;
+    }
