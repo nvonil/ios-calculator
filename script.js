@@ -1,4 +1,4 @@
-// Time Functionality
+// ---------- Time Functionality ----------
 const hours = document.querySelector(".hours");
 const minutes = document.querySelector(".minutes");
 
@@ -23,7 +23,7 @@ function updateTime() {
 setInterval(updateTime, 1000);
 updateTime();
 
-// Calculator Functionality
+// ---------- Calculator Functionality ----------
 function add(num1, num2) {
     return num1 + num2;
 }
@@ -38,76 +38,129 @@ function multiply(num1, num2) {
 
 function divide(num1, num2) {
     if (num2 === 0) {
-        return "Error: Division by zero"
+        return "Error: Division by 0";
     }
     return num1 / num2;
 }
 
-function operate(num1, num2, operator) {
-    if (operator === "+") {
-        return add(num1, num2);
-    } else if (operator === "−") {
-        return subtract(num1, num2);
-    } else if (operator === "×") {
-        return multiply(num1, num2);
-    } else if (operator === "÷") {
-        return divide(num1, num2);
-    } else {
-        return "Error: Invalid operator"
+// Helper function to check if input is an operator
+function isOperator(char) {
+    return ["+", "-", "×", "÷"].includes(char);
+}
+
+// Helper function to reset the calculator
+function resetCalculator() {
+    currentNumber = "";
+    equation = [];
+    result = "";
+    hasResult = false;
+    review.value = "";
+    display.value = "0";
+}
+
+// Helper function to handle clearing result when starting a new input
+function clearResultIfNeeded() {
+    if (hasResult) {
+        equation = [];
+        hasResult = false;
     }
 }
 
+// ---------- Main Logic ----------
 let currentNumber = "";
-let firstNumber = "";
-let operator = "";
+let equation = [];
+let result = "";
+let hasResult = false;
 
+const review = document.getElementById("review");
 const display = document.getElementById("display");
 const buttons = Array.from(document.querySelectorAll(".button"));
 
 buttons.forEach(button => {
     button.addEventListener("click", (e) => {
-        const value = e.target.innerText;
+        const buttonContent = e.target.innerText;
 
-        // Number buttons
+        // ---------- Number buttons ----------
         if (button.classList.contains("number")) {
-            currentNumber += value;
-            display.value = currentNumber;
+            clearResultIfNeeded();
+            currentNumber += buttonContent;
+            display.value = equation.join("") + currentNumber;
 
-        // Decimal button
+        // ---------- Decimal button ----------
         } else if (button.classList.contains("decimal")) {
             if (!currentNumber.includes(".")) {
                 currentNumber += ".";
-                display.value = currentNumber;
+                display.value = equation.join("") + currentNumber;
             }
 
-        // Operator buttons
+        // ---------- Operator buttons ----------
         } else if (button.classList.contains("operand")) {
-            if (currentNumber) {
-                if (firstNumber && operator) {
-                    firstNumber = operate(parseFloat(firstNumber), parseFloat(currentNumber), operator);
-                    display.value = firstNumber;
-                } else {
-                    firstNumber = currentNumber;
-                }
-                operator = value;
+            const lastChar = equation[equation.length - 1];
+
+            if (!currentNumber && (!lastChar || isOperator(lastChar))) {
+                currentNumber = "0";
+            }
+
+            if (currentNumber || result) {
+                clearResultIfNeeded();
+                equation.push(currentNumber);
                 currentNumber = "";
+                equation.push(buttonContent);
+                display.value = equation.join("");
             }
 
-        // Equals button
+        // ---------- Equals button ----------
         } else if (button.classList.contains("equals")) {
-            if (firstNumber && operator && currentNumber) {
-                display.value = operate(parseFloat(firstNumber), parseFloat(currentNumber), operator);
-                currentNumber = display.value;
-                firstNumber = "";
-                operator = "";
+            if (currentNumber || result) {
+                equation.push(currentNumber);
+
+                result = orderOfOperations(equation);
+                review.value = equation.join("");
+                display.value = result;
+
+                currentNumber = result.toString();
+                equation = [];
+                hasResult = true;
             }
 
-        // Clear button
+        // ---------- Clear button ----------
         } else if (button.classList.contains("clear")) {
-            currentNumber = "";
-            firstNumber = "";
-            operator = "";
-            display.value = "0";
+            resetCalculator();
         }
     });
 });
+
+// Helper function to handle PEMDAS
+function orderOfOperations(equation) {
+    const operators = {
+        "+": (a, b) => a + b,
+        "-": (a, b) => a - b,
+        "×": (a, b) => a * b,
+        "÷": (a, b) => divide(a, b)
+    };
+
+    let newEquation = [];
+    for (let i = 0; i < equation.length; i++) {
+        if (equation[i] === "×" || equation[i] === "÷") {
+            const prev = parseFloat(newEquation.pop());
+            const next = parseFloat(equation[++i]);
+            const result = operators[equation[i - 1]](prev, next);
+
+            if (typeof result === "string") {
+                return result;
+            }
+            newEquation.push(result);
+        } else {
+            newEquation.push(equation[i]);
+        }
+    }
+
+    let finalResult = parseFloat(newEquation[0]);
+    for (let i = 1; i < newEquation.length; i += 2) {
+        const operator = newEquation[i];
+        const nextNumber = parseFloat(newEquation[i + 1]);
+        finalResult = operators[operator](finalResult, nextNumber);
+    }
+
+    return finalResult;
+}
