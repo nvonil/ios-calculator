@@ -36,6 +36,7 @@ body {
     position: relative;
 }
 
+    /* ---------- Notch ---------- */
     .notch-container {
         background-color: black;
 
@@ -77,10 +78,10 @@ body {
             left: calc(50% + 35px);
         }
 
+    /* ---------- Status ---------- */
     .status-container {
         display: flex;
         justify-content: space-between;
-        align-items: center;
 
         padding: 0.5rem 2rem 0.5rem 3rem;
     }
@@ -100,26 +101,39 @@ body {
                 height: 1.25rem;
             }
 
+    /* ---------- Display ---------- */
     .display-container {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        flex-direction: column;
+
+        margin: 135px 25px 10px 25px;
     }
 
-        #display {
-            width: 100%;
+        #review {
+            color: var(--light-gray);
+            font-size: 2rem;
+        }
 
-            margin: 150px 35px 0 35px;
+        #display {
+            color: white;
+            font-size: 5rem;
+        }
+
+        #review, #display {
+            width: 100%;
 
             background-color: transparent;
             color: white;
-            font-size: 6rem;
             font-weight: 300;
             text-align: right;
 
             border: none;
+
+            cursor: default;
+            outline: none;
         }
 
+    /* ---------- Buttons ---------- */
     .buttons-container {
         display: flex;
         justify-content: center;
@@ -174,14 +188,15 @@ body {
                 border-radius: 75px;
             }
 
-            button:hover {
-                filter: brightness(110%);
-            }
+                button:hover {
+                    filter: brightness(110%);
+                }
 
-            button:active {
-                transform: scale(1.025);
-            }
+                button:active {
+                    transform: scale(1.025);
+                }
 
+    /* ---------- Home ---------- */
     .home-bar {
         width: 175px;
         height: 5px;
