@@ -77,6 +77,17 @@ body {
             transform: translateY(-50%);
             left: calc(50% + 35px);
         }
+    
+    /* ---------- History ---------- */
+    .list-icon {
+        position: absolute;
+        transform: translate(25px, 40px);
+
+        width: 35px;
+        height: 35px;
+
+        cursor: pointer;
+    }
 
     /* ---------- Status ---------- */
     .status-container {
