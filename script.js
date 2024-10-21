@@ -1,4 +1,4 @@
-// ---------- Time Functionality ----------
+// ========== Time Functionality ==========
 const hours = document.querySelector(".hours");
 const minutes = document.querySelector(".minutes");
 
@@ -23,7 +23,7 @@ function updateTime() {
 setInterval(updateTime, 1000);
 updateTime();
 
-// ---------- Calculator Functionality ----------
+// ========== Calculator Operations ==========
 function add(num1, num2) {
     return num1 + num2;
 }
@@ -48,7 +48,7 @@ function isOperator(char) {
     return ["+", "-", "×", "÷"].includes(char);
 }
 
-// Helper function to reset the calculator
+// Help function to reset calculator to its initial state
 function resetCalculator() {
     currentNumber = "";
     equation = [];
@@ -58,7 +58,7 @@ function resetCalculator() {
     display.value = "0";
 }
 
-// Helper function to handle clearing result when starting a new input
+// Helper function to clear result when starting new input
 function clearResultIfNeeded() {
     if (hasResult) {
         equation = [];
@@ -66,7 +66,7 @@ function clearResultIfNeeded() {
     }
 }
 
-// ---------- Main Logic ----------
+// ========== Calculator Functionality ==========
 let currentNumber = "";
 let equation = [];
 let result = "";
@@ -80,20 +80,20 @@ buttons.forEach(button => {
     button.addEventListener("click", (e) => {
         const buttonContent = e.target.innerText;
 
-        // ---------- Number buttons ----------
+        // ========== Number buttons ==========
         if (button.classList.contains("number")) {
             clearResultIfNeeded();
             currentNumber += buttonContent;
             display.value = equation.join("") + currentNumber;
 
-        // ---------- Decimal button ----------
+        // ========== Decimal button ==========
         } else if (button.classList.contains("decimal")) {
             if (!currentNumber.includes(".")) {
                 currentNumber += ".";
                 display.value = equation.join("") + currentNumber;
             }
 
-        // ---------- Operator buttons ----------
+        // ========== Operator buttons ==========
         } else if (button.classList.contains("operand")) {
             const lastChar = equation[equation.length - 1];
 
@@ -109,7 +109,7 @@ buttons.forEach(button => {
                 display.value = equation.join("");
             }
 
-        // ---------- Equals button ----------
+        // ========== Equals button ==========
         } else if (button.classList.contains("equals")) {
             if (currentNumber || result) {
                 equation.push(currentNumber);
@@ -118,12 +118,21 @@ buttons.forEach(button => {
                 review.value = equation.join("");
                 display.value = result;
 
+                const calculationItem = document.createElement("div");
+                calculationItem.innerHTML = `
+                    <div class="calculation-review">${review.value}</div>
+                    <div class="calculation-result">${result}</div>
+                `;
+
+                calculationItem.classList.add("calculation-item");
+                calculationContainer.appendChild(calculationItem);
+
                 currentNumber = result.toString();
                 equation = [];
                 hasResult = true;
             }
 
-        // ---------- Clear button ----------
+        // ========== Clear button ==========
         } else if (button.classList.contains("clear")) {
             resetCalculator();
         }
@@ -133,9 +142,9 @@ buttons.forEach(button => {
 // Helper function to handle PEMDAS
 function orderOfOperations(equation) {
     const operators = {
-        "+": (a, b) => a + b,
-        "-": (a, b) => a - b,
-        "×": (a, b) => a * b,
+        "+": (a, b) => add(a, b),
+        "-": (a, b) => subtract(a, b),
+        "×": (a, b) => multiply(a, b),
         "÷": (a, b) => divide(a, b)
     };
 
@@ -165,9 +174,10 @@ function orderOfOperations(equation) {
     return finalResult;
 }
 
-// ---------- History Functionality ----------
+// ========== History Functionality ==========
 const listIcon = document.querySelector(".list-icon");
 const historyContainer = document.querySelector(".history-container");
+const calculationContainer = document.querySelector(".calculation-container")
 
 listIcon.addEventListener("click", () => {
     historyContainer.classList.toggle("active");
