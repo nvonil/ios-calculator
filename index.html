@@ -8,25 +8,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- ========== Calculator ========== -->
     <div class="calculator-container">
 
-        <!-- ---------- Notch ---------- -->
+        <!-- ========== History ========== -->
+        <img src="images/list.svg" alt="List Icon" class="list-icon">
+        <div class="history-container">
+            <div class="calculation-container"></div>
+        </div>
+
+        <!-- ========== Notch ========== -->
         <div class="notch-container">
             <div class="speaker"></div>
             <div class="camera"></div>
         </div>
 
-        <!-- ---------- History ---------- -->
-        <img src="images/list.svg" alt="List Icon" class="list-icon">
-        <div class="history-container">
-            <ul class="history-list">
-                <li class="history-item"></li>
-            </ul>
-        </div>
-
-        <!-- ---------- Status ---------- -->
+        <!-- ========== Status ========== -->
         <div class="status-container">
-            <div class="time"><span class="hours"></span>:<span class="minutes"></span></div>
+            <div class="time">
+                <span class="hours"></span>:<span class="minutes"></span>
+            </div>
             <div class="icons-container">
                 <img src="images/signal.svg" alt="Signal Icon" class="icon">
                 <img src="images/wifi.svg" alt="Wifi Icon" class="icon">
@@ -34,13 +35,13 @@
             </div>
         </div>
 
-        <!-- ---------- Display ---------- -->
+        <!-- ========== Display ========== -->
         <div class="display-container">
             <input type="text" id="review" readonly>
             <input type="text" id="display" readonly value="0">
         </div>
 
-        <!-- ---------- Buttons ---------- -->
+        <!-- ========== Buttons ========== -->
         <div class="buttons-container">
             <div class="buttons-grid">
                 <button class="button clear">AC</button>
@@ -69,9 +70,12 @@
             </div>
         </div>
 
-        <!-- ---------- Home ---------- -->
+        <!-- ========== Home ========== -->
         <div class="home-bar"></div>
     </div>
+
+    <!-- ========== Footer ========== -->
+    <div class="footer">© 2024 <a href="https://github.com/nvonil" target="_blank">nvonil</a></div>
 
     <script src="script.js"></script>
 </body>
