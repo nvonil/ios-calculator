@@ -53,6 +53,8 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+
+        z-index: 2;
     }
 
         .speaker {
@@ -87,7 +89,32 @@ body {
         height: 35px;
 
         cursor: pointer;
+
+        z-index: 2;
     }
+
+    .history-container {
+        position: absolute;
+
+        width: 350px;
+        height: 100%;
+
+        background-color: transparent;
+
+        border-radius: 45px 0 0 45px;
+
+        z-index: 1;
+
+        transition: background-color 0.3s;
+    }
+
+        .history-container.active {
+            background-color: var(--dark-liver);
+        }
+
+        .history-list {
+            list-style: none;
+        }
 
     /* ---------- Status ---------- */
     .status-container {
@@ -100,11 +127,15 @@ body {
         .time {
             color: white;
             font-size: 1rem;
+
+            z-index: 2;
         }
 
         .icons-container {
             display: flex;
             gap: 5px;
+
+            z-index: 2;
         }
 
             .icon {
@@ -170,7 +201,15 @@ body {
                 font-weight: 300;
 
                 transition: filter 0.3s;
+
+                z-index: 2;
             }
+
+                .button.inactive {
+                    z-index: 0;
+
+                    pointer-events: none;
+                }
 
             .number,
             .zero,
