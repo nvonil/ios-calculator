@@ -164,3 +164,14 @@ function orderOfOperations(equation) {
 
     return finalResult;
 }
+
+// ---------- History Functionality ----------
+const listIcon = document.querySelector(".list-icon");
+const historyContainer = document.querySelector(".history-container");
+
+listIcon.addEventListener("click", () => {
+    historyContainer.classList.toggle("active");
+    buttons.forEach(button => {
+        button.classList.toggle("inactive");
+    })
+})
