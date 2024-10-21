@@ -19,13 +19,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
     background-color: hsl(0, 0%, 90%);
 }
 
+/* ========== Calculaator ========== */
 .calculator-container {
-    width: 400px;
-    height: 800px;
+    width: 25rem;
+    height: 50rem;
 
     background-color: var(--eerie-black);
     box-shadow: 5px 5px 10px hsl(0, 0%, 25%);
@@ -36,14 +38,80 @@ body {
     position: relative;
 }
 
-    /* ---------- Notch ---------- */
+    /* ========== History ========== */
+    .list-icon {
+        position: absolute;
+        transform: translate(25px, 40px);
+
+        width: 35px;
+        height: 35px;
+
+        cursor: pointer;
+
+        z-index: 2;
+    }
+
+    .history-container {
+        position: absolute;
+
+        width: 350px;
+        height: 100%;
+
+        background-color: transparent;
+
+        border-radius: 45px 0 0 45px;
+
+        overflow-y: auto;
+        z-index: 1;
+
+        transition: background-color 0.3s;
+    }
+
+        .history-container.active{
+            background-color: var(--dark-liver);
+        }
+
+        .history-container.active .calculation-container {
+            display: block;
+        }
+
+        .calculation-container {
+            padding-top: 150px;
+
+            display: none;
+        }
+
+            .calculation-item {
+                border-bottom: 1px solid var(--light-gray);
+            }
+
+            .calculation-item:first-child {
+                border-top: 1px solid var(--light-gray);
+            }
+    
+                .calculation-review {
+                    color: var(--light-gray);
+                    font-size: 1.25rem;
+                    font-weight: 300;
+
+                    padding: 20px 0 5px 35px;
+                }
+
+                .calculation-result {
+                    color: white;
+                    font-size: 1.75rem;
+                    font-weight: 300;
+
+                    padding: 0 0 20px 35px;
+                }
+
+    /* ========== Notch ========== */
     .notch-container {
         background-color: black;
 
         width: 175px;
         height: 30px;
 
-        border: 50px;
         border-radius: 0 0 15px 15px;
 
         position: absolute;
@@ -79,44 +147,8 @@ body {
             transform: translateY(-50%);
             left: calc(50% + 35px);
         }
-    
-    /* ---------- History ---------- */
-    .list-icon {
-        position: absolute;
-        transform: translate(25px, 40px);
 
-        width: 35px;
-        height: 35px;
-
-        cursor: pointer;
-
-        z-index: 2;
-    }
-
-    .history-container {
-        position: absolute;
-
-        width: 350px;
-        height: 100%;
-
-        background-color: transparent;
-
-        border-radius: 45px 0 0 45px;
-
-        z-index: 1;
-
-        transition: background-color 0.3s;
-    }
-
-        .history-container.active {
-            background-color: var(--dark-liver);
-        }
-
-        .history-list {
-            list-style: none;
-        }
-
-    /* ---------- Status ---------- */
+    /* ========== Status ========== */
     .status-container {
         display: flex;
         justify-content: space-between;
@@ -143,7 +175,7 @@ body {
                 height: 1.25rem;
             }
 
-    /* ---------- Display ---------- */
+    /* ========== Display ========== */
     .display-container {
         display: flex;
         flex-direction: column;
@@ -175,7 +207,7 @@ body {
             outline: none;
         }
 
-    /* ---------- Buttons ---------- */
+    /* ========== Buttons ========== */
     .buttons-container {
         display: flex;
         justify-content: center;
@@ -205,26 +237,29 @@ body {
                 z-index: 2;
             }
 
+                .button:hover {
+                    filter: brightness(110%);
+                }
+
+                .button:active {
+                    transform: scale(1.025);
+                }
+
                 .button.inactive {
                     z-index: 0;
 
                     pointer-events: none;
                 }
 
-            .number,
-            .zero,
-            .decimal {
+            .number, .decimal {
                 background-color: var(--dark-liver);
             }
 
-            .clear,
-            .plus-minus,
-            .percent {
+            .clear, .plus-minus, .percent {
                 background-color: var(--light-gray);
             }
 
-            .operand,
-            .equals {
+            .operand, .equals {
                 background-color: var(--vivid-gamboge);
                 font-size: 3rem;
 
@@ -238,15 +273,7 @@ body {
                 border-radius: 75px;
             }
 
-                button:hover {
-                    filter: brightness(110%);
-                }
-
-                button:active {
-                    transform: scale(1.025);
-                }
-
-    /* ---------- Home ---------- */
+    /* ========== Home ========== */
     .home-bar {
         width: 175px;
         height: 5px;
@@ -261,4 +288,19 @@ body {
         transform: translate(-50%);
 
         cursor: pointer;
+    }
+
+/* ========== Footer ========== */
+.footer {
+    color: var(--dark-liver);
+
+    padding-top: 2.5rem;
+}
+
+    .footer a {
+        color: var(--dark-liver);
+    }
+
+    .footer a:hover {
+        color: var(--eerie-black);
     }
