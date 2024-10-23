@@ -12,33 +12,38 @@
     <div class="calculator-container">
 
         <!-- ========== History ========== -->
-        <img src="images/list.svg" alt="List Icon" class="list-icon">
+        <img src="images/list.svg" alt="List Icon" class="history-icon">
+
         <div class="history-container">
-            <div class="calculation-container"></div>
+            <div class="history-empty-container">
+                <img src="images/history.svg" alt="History Icon" class="history-empty-icon">
+                <div class="history-empty-text">No History</div>
+            </div>
+            <div class="history-calculation-container"></div>
         </div>
 
         <!-- ========== Notch ========== -->
         <div class="notch-container">
-            <div class="speaker"></div>
-            <div class="camera"></div>
+            <div class="notch-speaker"></div>
+            <div class="notch-camera"></div>
         </div>
 
         <!-- ========== Status ========== -->
         <div class="status-container">
-            <div class="time">
-                <span class="hours"></span>:<span class="minutes"></span>
+            <div class="status-time">
+                <span class="time-hours"></span>:<span class="time-minutes"></span>
             </div>
-            <div class="icons-container">
-                <img src="images/signal.svg" alt="Signal Icon" class="icon">
-                <img src="images/wifi.svg" alt="Wifi Icon" class="icon">
-                <img src="images/battery.svg" alt="Battery Icon" class="icon">
+            <div class="status-icons">
+                <img src="images/signal.svg" alt="Signal Icon" class="status-icon">
+                <img src="images/wifi.svg" alt="Wifi Icon" class="status-icon">
+                <img src="images/battery.svg" alt="Battery Icon" class="status-icon">
             </div>
         </div>
 
         <!-- ========== Display ========== -->
         <div class="display-container">
-            <input type="text" id="review" readonly>
-            <input type="text" id="display" readonly value="0">
+            <input type="text" id="display-equation" readonly>
+            <input type="text" id="display-result" readonly value="0">
         </div>
 
         <!-- ========== Buttons ========== -->
@@ -71,11 +76,11 @@
         </div>
 
         <!-- ========== Home ========== -->
-        <div class="home-bar"></div>
+        <div class="home-indicator"></div>
     </div>
 
     <!-- ========== Footer ========== -->
-    <div class="footer">© 2024 <a href="https://github.com/nvonil" target="_blank">nvonil</a></div>
+    <div class="calculator-footer">© 2024 <a href="https://github.com/nvonil" target="_blank">nvonil</a></div>
 
     <script src="script.js"></script>
 </body>
