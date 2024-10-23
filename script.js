@@ -1,6 +1,6 @@
 // ========== Time Functionality ==========
-const hours = document.querySelector(".hours");
-const minutes = document.querySelector(".minutes");
+const timeHours = document.querySelector(".time-hours");
+const timeMinutes = document.querySelector(".time-minutes");
 
 function updateTime() {
     const currentTime = new Date();
@@ -16,8 +16,8 @@ function updateTime() {
     const formattedHours = currentHour.toString();
     const formattedMinutes = currentMinute.toString().padStart(2, "0");
 
-    hours.textContent = formattedHours;
-    minutes.textContent = formattedMinutes;
+    timeHours.textContent = formattedHours;
+    timeMinutes.textContent = formattedMinutes;
 }
 
 setInterval(updateTime, 1000);
@@ -54,8 +54,8 @@ function resetCalculator() {
     equation = [];
     result = "";
     hasResult = false;
-    review.value = "";
-    display.value = "0";
+    displayEquation.value = "";
+    displayResult.value = "0";
 }
 
 // Helper function to clear result when starting new input
@@ -72,8 +72,8 @@ let equation = [];
 let result = "";
 let hasResult = false;
 
-const review = document.getElementById("review");
-const display = document.getElementById("display");
+const displayEquation = document.getElementById("display-equation");
+const displayResult = document.getElementById("display-result");
 const buttons = Array.from(document.querySelectorAll(".button"));
 
 buttons.forEach(button => {
@@ -84,13 +84,13 @@ buttons.forEach(button => {
         if (button.classList.contains("number")) {
             clearResultIfNeeded();
             currentNumber += buttonContent;
-            display.value = equation.join("") + currentNumber;
+            displayResult.value = equation.join("") + currentNumber;
 
         // ========== Decimal button ==========
         } else if (button.classList.contains("decimal")) {
             if (!currentNumber.includes(".")) {
                 currentNumber += ".";
-                display.value = equation.join("") + currentNumber;
+                displayResult.value = equation.join("") + currentNumber;
             }
 
         // ========== Operator buttons ==========
@@ -106,7 +106,7 @@ buttons.forEach(button => {
                 equation.push(currentNumber);
                 currentNumber = "";
                 equation.push(buttonContent);
-                display.value = equation.join("");
+                displayResult.value = equation.join("");
             }
 
         // ========== Equals button ==========
@@ -115,17 +115,19 @@ buttons.forEach(button => {
                 equation.push(currentNumber);
 
                 result = orderOfOperations(equation);
-                review.value = equation.join("");
-                display.value = result;
+                displayEquation.value = equation.join("");
+                displayResult.value = result;
 
-                const calculationItem = document.createElement("div");
-                calculationItem.innerHTML = `
-                    <div class="calculation-review">${review.value}</div>
-                    <div class="calculation-result">${result}</div>
+                const historyCalculationItem = document.createElement("div");
+                historyCalculationItem.classList.add("history-calculation-item");
+
+                historyCalculationItem.innerHTML = `
+                    <div class="calculation-item-equation">${displayEquation.value}</div>
+                    <div class="calculation-item-result">${result}</div>
                 `;
 
-                calculationItem.classList.add("calculation-item");
-                calculationContainer.appendChild(calculationItem);
+                historyCalculationContainer.appendChild(historyCalculationItem);
+                historyEmptyContainer.style.display = "none";
 
                 currentNumber = result.toString();
                 equation = [];
@@ -175,12 +177,24 @@ function orderOfOperations(equation) {
 }
 
 // ========== History Functionality ==========
-const listIcon = document.querySelector(".list-icon");
+const historyIcon = document.querySelector(".history-icon");
 const historyContainer = document.querySelector(".history-container");
-const calculationContainer = document.querySelector(".calculation-container")
+const historyCalculationContainer = document.querySelector(".history-calculation-container");
+const historyEmptyContainer = document.querySelector(".history-empty-container");
 
-listIcon.addEventListener("click", () => {
+historyIcon.addEventListener("click", () => {
     historyContainer.classList.toggle("active");
+
+    if (historyContainer.classList.contains("active")) {
+        if (historyCalculationContainer.children.length === 0) {
+            historyEmptyContainer.style.display = "flex";
+        } else {
+            historyEmptyContainer.style.display = "none";
+        }
+    } else {
+        historyEmptyContainer.style.display = "none";
+    }
+
     buttons.forEach(button => {
         button.classList.toggle("inactive");
     })
