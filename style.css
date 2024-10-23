@@ -39,7 +39,7 @@ body {
 }
 
     /* ========== History ========== */
-    .list-icon {
+    .history-icon {
         position: absolute;
         transform: translate(25px, 40px);
 
@@ -71,39 +71,61 @@ body {
             background-color: var(--dark-liver);
         }
 
-        .history-container.active .calculation-container {
-            display: block;
+        .history-empty-container {
+            display: none;
+            align-items: center;
+            flex-direction: column;
+            gap: 5px;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        .calculation-container {
+            .history-empty-icon {
+                width: 2rem;
+                height: 2rem;
+            }
+
+            .history-empty-text {
+                color: var(--light-gray);
+                font-size: 1.25rem;
+                font-weight: 300;
+            }
+
+        .history-calculation-container {
             padding-top: 150px;
 
             display: none;
         }
 
-            .calculation-item {
-                border-bottom: 1px solid var(--light-gray);
+            .history-calculation-item {
+                border-bottom: 0.5px solid var(--light-gray);
             }
 
-            .calculation-item:first-child {
-                border-top: 1px solid var(--light-gray);
+            .history-calculation-item:first-child {
+                border-top: 0.5px solid var(--light-gray);
             }
     
-                .calculation-review {
+                .calculation-item-equation {
                     color: var(--light-gray);
-                    font-size: 1.25rem;
                     font-weight: 300;
 
                     padding: 20px 0 5px 35px;
                 }
 
-                .calculation-result {
+                .calculation-item-result {
                     color: white;
-                    font-size: 1.75rem;
+                    font-size: 1.5rem;
                     font-weight: 300;
 
                     padding: 0 0 20px 35px;
                 }
+
+        .history-container.active .history-calculation-container {
+            display: block;
+        }
 
     /* ========== Notch ========== */
     .notch-container {
@@ -125,7 +147,7 @@ body {
         z-index: 2;
     }
 
-        .speaker {
+        .notch-speaker {
             background-color: var(--eerie-black);
 
             width: 45px;
@@ -134,7 +156,7 @@ body {
             border-radius: 10px;
         }
 
-        .camera {
+        .notch-camera {
             background-color: var(--eerie-black);
 
             width: 15px;
@@ -156,21 +178,21 @@ body {
         padding: 0.5rem 2rem 0.5rem 3rem;
     }
 
-        .time {
+        .status-time {
             color: white;
             font-size: 1rem;
 
             z-index: 2;
         }
 
-        .icons-container {
+        .status-icons {
             display: flex;
             gap: 5px;
 
             z-index: 2;
         }
 
-            .icon {
+            .status-icon {
                 width: 1.25rem;
                 height: 1.25rem;
             }
@@ -183,17 +205,17 @@ body {
         margin: 135px 25px 10px 25px;
     }
 
-        #review {
+        #display-equation {
             color: var(--light-gray);
             font-size: 2rem;
         }
 
-        #display {
+        #display-result {
             color: white;
             font-size: 5rem;
         }
 
-        #review, #display {
+        #display-equation, #display-result {
             width: 100%;
 
             background-color: transparent;
@@ -274,7 +296,7 @@ body {
             }
 
     /* ========== Home ========== */
-    .home-bar {
+    .home-indicator {
         width: 175px;
         height: 5px;
 
@@ -291,16 +313,16 @@ body {
     }
 
 /* ========== Footer ========== */
-.footer {
+.calculator-footer {
     color: var(--dark-liver);
 
     padding-top: 2.5rem;
 }
 
-    .footer a {
+    .calculator-footer a {
         color: var(--dark-liver);
     }
 
-    .footer a:hover {
+    .calculator-footer a:hover {
         color: var(--eerie-black);
     }
