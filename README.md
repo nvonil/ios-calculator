@@ -4,7 +4,6 @@ This project is a calculator inspired by the Apple iOS calculator app, built wit
 
 ## Features
 
-- **Basic Arithmetic**: Supports addition, subtraction, multiplication, and division operations, including decimal values, plus/minus toggling, and percentage calculations
-- **Interactive UI**: Featurs buttons with hover and active states to enhance the user experience
-- **Collapsible History Panel**: Stores past calculations, allowing users to delete individual entries in Edit Mode to manage their calculation history
-- **Live Time Display**: Shows the current time in the top bar, resemlbing the iPhone status bar
+- **Basic Arithmetic**: Supports addition, subtraction, multiplication, and division operations, and handles decimal inputs, plus/minus toggling, and percentage values
+- **Interactive UI**: Features buttons with hover and active states, and displays the current time in the status bar to enhance the user experience
+- **History Panel**: Stores past calculations and allows users to delete individual calculations in Edit Mode
