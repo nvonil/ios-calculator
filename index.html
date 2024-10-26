@@ -8,16 +8,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- ========== Calculator ========== -->
-    <div class="calculator-container">
+    <!-- ========== Phone ========== -->
+    <div class="phone-container">
 
         <!-- ========== History ========== -->
-        <img src="images/list.svg" alt="List Icon" class="history-icon">
+        <img src="images/history.svg" alt="History Icon" class="history-icon">
 
         <div class="history-container">
+            <div class="history-edit">Edit</div>
             <div class="history-empty-container">
-                <img src="images/history.svg" alt="History Icon" class="history-empty-icon">
-                <div class="history-empty-text">No History</div>
+                <img src="images/history-empty.svg" alt="History Empty Icon" class="empty-icon">
+                <div class="empty-text">No History</div>
             </div>
             <div class="history-calculation-container"></div>
         </div>
@@ -40,47 +41,50 @@
             </div>
         </div>
 
-        <!-- ========== Display ========== -->
-        <div class="display-container">
-            <input type="text" id="display-equation" readonly>
-            <input type="text" id="display-result" readonly value="0">
-        </div>
-
-        <!-- ========== Buttons ========== -->
-        <div class="buttons-container">
-            <div class="buttons-grid">
-                <button class="button clear">AC</button>
-                <button class="button plus-minus">+/-</button>
-                <button class="button percent">%</button>
-                <button class="button operand">÷</button>
-
-                <button class="button number">7</button>
-                <button class="button number">8</button>
-                <button class="button number">9</button>
-                <button class="button operand">×</button>
-
-                <button class="button number">4</button>
-                <button class="button number">5</button>
-                <button class="button number">6</button>
-                <button class="button operand">-</button>
-
-                <button class="button number">1</button>
-                <button class="button number">2</button>
-                <button class="button number">3</button>
-                <button class="button operand">+</button>
-
-                <button class="button number span-two">0</button>
-                <button class="button decimal">.</button>
-                <button class="button equals">=</button>
-            </div>
-        </div>
-
         <!-- ========== Home ========== -->
         <div class="home-indicator"></div>
+
+        <!-- ========== Calculator ========== -->
+        <div class="calculator-container">
+            <!-- ========== Display ========== -->
+            <div class="display-container">
+                <input type="text" id="display-equation" readonly>
+                <input type="text" id="display-result" readonly value="0">
+            </div>
+
+            <!-- ========== Buttons ========== -->
+            <div class="buttons-container">
+                <div class="buttons-grid">
+                    <button class="button clear">AC</button>
+                    <button class="button plus-minus">+/-</button>
+                    <button class="button percent">%</button>
+                    <button class="button operand">÷</button>
+
+                    <button class="button number">7</button>
+                    <button class="button number">8</button>
+                    <button class="button number">9</button>
+                    <button class="button operand">×</button>
+
+                    <button class="button number">4</button>
+                    <button class="button number">5</button>
+                    <button class="button number">6</button>
+                    <button class="button operand">-</button>
+
+                    <button class="button number">1</button>
+                    <button class="button number">2</button>
+                    <button class="button number">3</button>
+                    <button class="button operand">+</button>
+
+                    <button class="button number span-two">0</button>
+                    <button class="button decimal">.</button>
+                    <button class="button equals">=</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- ========== Footer ========== -->
-    <div class="calculator-footer">© 2024 <a href="https://github.com/nvonil" target="_blank">nvonil</a></div>
+    <div class="footer">© 2024 <a href="https://github.com/nvonil" target="_blank">nvonil</a></div>
 
     <script src="script.js"></script>
 </body>
