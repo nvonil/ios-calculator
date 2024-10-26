@@ -23,7 +23,7 @@ function updateTime() {
 setInterval(updateTime, 1000);
 updateTime();
 
-// ========== Calculator Operations ==========
+// ========== Operation Functionality ==========
 function add(num1, num2) {
     return num1 + num2;
 }
@@ -41,29 +41,6 @@ function divide(num1, num2) {
         return "Error: Division by 0";
     }
     return num1 / num2;
-}
-
-// Helper function to check if input is an operator
-function isOperator(char) {
-    return ["+", "-", "×", "÷"].includes(char);
-}
-
-// Help function to reset calculator to its initial state
-function resetCalculator() {
-    currentNumber = "";
-    equation = [];
-    result = "";
-    hasResult = false;
-    displayEquation.value = "";
-    displayResult.value = "0";
-}
-
-// Helper function to clear result when starting new input
-function clearResultIfNeeded() {
-    if (hasResult) {
-        equation = [];
-        hasResult = false;
-    }
 }
 
 // ========== Calculator Functionality ==========
@@ -98,7 +75,7 @@ buttons.forEach(button => {
             const lastChar = equation[equation.length - 1];
 
             if (!currentNumber && (!lastChar || isOperator(lastChar))) {
-                currentNumber = "0";
+                return;
             }
 
             if (currentNumber || result) {
@@ -114,19 +91,30 @@ buttons.forEach(button => {
             if (currentNumber || result) {
                 equation.push(currentNumber);
 
-                result = orderOfOperations(equation);
+                const evaluatedEquation = equation.map(item => {
+                    if (typeof item === "string" && item.includes("%")) {
+                        return parseFloat(item) / 100;
+                    } else {
+                        return item;
+                    }
+                });
+
+                result = orderOfOperations(evaluatedEquation);
                 displayEquation.value = equation.join("");
                 displayResult.value = result;
 
-                const historyCalculationItem = document.createElement("div");
-                historyCalculationItem.classList.add("history-calculation-item");
+                const calculationEntry = document.createElement("div");
+                calculationEntry.classList.add("calculation-entry");
 
-                historyCalculationItem.innerHTML = `
-                    <div class="calculation-item-equation">${displayEquation.value}</div>
-                    <div class="calculation-item-result">${result}</div>
+                calculationEntry.innerHTML = `
+                    <img src="images/delete.svg" alt="Delete Icon" class="entry-delete" style="display: none">
+                    <div class="entry-container">
+                        <div class="entry-equation">${displayEquation.value}</div>
+                        <div class="entry-result">${result}</div>
+                    </div>
                 `;
 
-                historyCalculationContainer.appendChild(historyCalculationItem);
+                historyCalculationContainer.appendChild(calculationEntry);
                 historyEmptyContainer.style.display = "none";
 
                 currentNumber = result.toString();
@@ -137,11 +125,55 @@ buttons.forEach(button => {
         // ========== Clear button ==========
         } else if (button.classList.contains("clear")) {
             resetCalculator();
+
+        // ========== Percent button ==========
+        } else if (button.classList.contains("percent")) {
+            if (!currentNumber.includes("%")) {
+                currentNumber += "%";
+                displayResult.value = equation.join("") + currentNumber;
+            }
+
+        // ========== Plus/Minus button ==========
+        } else if (button.classList.contains("plus-minus")) {
+            if (currentNumber) {
+                if (currentNumber.startsWith("-")) {
+                    currentNumber = currentNumber.slice(1);
+                } else {
+                    currentNumber = "-" + currentNumber;
+                }
+
+                displayResult.value = equation.join("") + currentNumber;
+            }
         }
     });
 });
 
-// Helper function to handle PEMDAS
+// ========== Helper Functions (Calculator Functionality) ==========
+
+// Clears the result when starting a new input
+function clearResultIfNeeded() {
+    if (hasResult) {
+        equation = [];
+        hasResult = false;
+    }
+}
+
+// Checks if the input is an operator
+function isOperator(char) {
+    return ["+", "-", "×", "÷"].includes(char);
+}
+
+// Resets the calculator to its initial state
+function resetCalculator() {
+    currentNumber = "";
+    equation = [];
+    result = "";
+    hasResult = false;
+    displayEquation.value = "";
+    displayResult.value = "0";
+}
+
+// Handles order of operations (PEMDAS)
 function orderOfOperations(equation) {
     const operators = {
         "+": (a, b) => add(a, b),
@@ -179,23 +211,81 @@ function orderOfOperations(equation) {
 // ========== History Functionality ==========
 const historyIcon = document.querySelector(".history-icon");
 const historyContainer = document.querySelector(".history-container");
-const historyCalculationContainer = document.querySelector(".history-calculation-container");
 const historyEmptyContainer = document.querySelector(".history-empty-container");
+const historyCalculationContainer = document.querySelector(".history-calculation-container");
+const calculatorContainer = document.querySelector(".calculator-container");
 
 historyIcon.addEventListener("click", () => {
     historyContainer.classList.toggle("active");
+    calculatorContainer.classList.toggle("inactive");
 
     if (historyContainer.classList.contains("active")) {
         if (historyCalculationContainer.children.length === 0) {
             historyEmptyContainer.style.display = "flex";
+            historyEdit.style.display = "none";
         } else {
             historyEmptyContainer.style.display = "none";
+            historyEdit.style.display = "block";
         }
     } else {
         historyEmptyContainer.style.display = "none";
     }
 
-    buttons.forEach(button => {
-        button.classList.toggle("inactive");
-    })
-})
+    resetEditMode();
+});
+
+calculatorContainer.addEventListener("click", () => {
+    if (historyContainer.classList.contains("active")) {
+        historyContainer.classList.remove("active");
+        calculatorContainer.classList.remove("inactive");
+        resetEditMode();
+    }
+});
+
+const historyEdit = document.querySelector(".history-edit");
+let isEditMode = false;
+
+historyEdit.addEventListener("click", () => {
+    isEditMode = !isEditMode;
+    const entryDelete = document.querySelectorAll(".entry-delete");
+
+    entryDelete.forEach(entry => {
+        if (isEditMode) {
+            entry.style.display = "block";
+        } else {
+            entry.style.display = "none";
+        }
+    });
+
+    if (isEditMode) {
+        historyEdit.textContent = "Done";
+    } else {
+        historyEdit.textContent = "Edit";
+    }
+});
+
+historyCalculationContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("entry-delete")) {
+        const entryToDelete = event.target.parentElement;
+        historyCalculationContainer.removeChild(entryToDelete);
+
+        if (historyCalculationContainer.children.length === 0) {
+            document.querySelector(".history-empty-container").style.display = "flex";
+            historyEdit.style.display = "none";
+        }
+    }
+});
+
+// ========== Helper Function (History Functionality) ==========
+// Resets edit mode
+function resetEditMode() {
+    if (isEditMode) {
+        isEditMode = false;
+        historyEdit.textContent = "Edit";
+
+        const entryDelete = document.querySelectorAll(".entry-delete");
+        entryDelete.forEach(entry => {
+            entry.style.display = "none";
+        });
+    }
+}
