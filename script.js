@@ -53,7 +53,7 @@ const displayEquation = document.getElementById("display-equation");
 const displayResult = document.getElementById("display-result");
 const buttons = Array.from(document.querySelectorAll(".button"));
 
-buttons.forEach(button => {
+buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
         const buttonContent = e.target.innerText;
 
@@ -63,14 +63,14 @@ buttons.forEach(button => {
             currentNumber += buttonContent;
             displayResult.value = equation.join("") + currentNumber;
 
-        // ========== Decimal button ==========
+            // ========== Decimal button ==========
         } else if (button.classList.contains("decimal")) {
             if (!currentNumber.includes(".")) {
                 currentNumber += ".";
                 displayResult.value = equation.join("") + currentNumber;
             }
 
-        // ========== Operator buttons ==========
+            // ========== Operator buttons ==========
         } else if (button.classList.contains("operand")) {
             const lastChar = equation[equation.length - 1];
 
@@ -86,12 +86,12 @@ buttons.forEach(button => {
                 displayResult.value = equation.join("");
             }
 
-        // ========== Equals button ==========
+            // ========== Equals button ==========
         } else if (button.classList.contains("equals")) {
             if (currentNumber || result) {
                 equation.push(currentNumber);
 
-                const evaluatedEquation = equation.map(item => {
+                const evaluatedEquation = equation.map((item) => {
                     if (typeof item === "string" && item.includes("%")) {
                         return parseFloat(item) / 100;
                     } else {
@@ -122,18 +122,18 @@ buttons.forEach(button => {
                 hasResult = true;
             }
 
-        // ========== Clear button ==========
+            // ========== Clear button ==========
         } else if (button.classList.contains("clear")) {
             resetCalculator();
 
-        // ========== Percent button ==========
+            // ========== Percent button ==========
         } else if (button.classList.contains("percent")) {
             if (!currentNumber.includes("%")) {
                 currentNumber += "%";
                 displayResult.value = equation.join("") + currentNumber;
             }
 
-        // ========== Plus/Minus button ==========
+            // ========== Plus/Minus button ==========
         } else if (button.classList.contains("plus-minus")) {
             if (currentNumber) {
                 if (currentNumber.startsWith("-")) {
@@ -179,7 +179,7 @@ function orderOfOperations(equation) {
         "+": (a, b) => add(a, b),
         "-": (a, b) => subtract(a, b),
         "×": (a, b) => multiply(a, b),
-        "÷": (a, b) => divide(a, b)
+        "÷": (a, b) => divide(a, b),
     };
 
     let newEquation = [];
@@ -211,8 +211,12 @@ function orderOfOperations(equation) {
 // ========== History Functionality ==========
 const historyIcon = document.querySelector(".history-icon");
 const historyContainer = document.querySelector(".history-container");
-const historyEmptyContainer = document.querySelector(".history-empty-container");
-const historyCalculationContainer = document.querySelector(".history-calculation-container");
+const historyEmptyContainer = document.querySelector(
+    ".history-empty-container"
+);
+const historyCalculationContainer = document.querySelector(
+    ".history-calculation-container"
+);
 const calculatorContainer = document.querySelector(".calculator-container");
 
 historyIcon.addEventListener("click", () => {
@@ -249,7 +253,7 @@ historyEdit.addEventListener("click", () => {
     isEditMode = !isEditMode;
     const entryDelete = document.querySelectorAll(".entry-delete");
 
-    entryDelete.forEach(entry => {
+    entryDelete.forEach((entry) => {
         if (isEditMode) {
             entry.style.display = "block";
         } else {
@@ -270,7 +274,8 @@ historyCalculationContainer.addEventListener("click", (event) => {
         historyCalculationContainer.removeChild(entryToDelete);
 
         if (historyCalculationContainer.children.length === 0) {
-            document.querySelector(".history-empty-container").style.display = "flex";
+            document.querySelector(".history-empty-container").style.display =
+                "flex";
             historyEdit.style.display = "none";
         }
     }
@@ -284,7 +289,7 @@ function resetEditMode() {
         historyEdit.textContent = "Edit";
 
         const entryDelete = document.querySelectorAll(".entry-delete");
-        entryDelete.forEach(entry => {
+        entryDelete.forEach((entry) => {
             entry.style.display = "none";
         });
     }

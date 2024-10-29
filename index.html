@@ -1,91 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iOS Calculator</title>
-    <link rel="icon" href="images/calculator.png">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- ========== Phone ========== -->
-    <div class="phone-container">
-
-        <!-- ========== History ========== -->
-        <img src="images/history.svg" alt="History Icon" class="history-icon">
-        <div class="history-container">
-            <div class="history-edit">Edit</div>
-            <div class="history-empty-container">
-                <img src="images/history-empty.svg" alt="History Empty Icon" class="empty-icon">
-                <div class="empty-text">No History</div>
-            </div>
-            <div class="history-calculation-container"></div>
-        </div>
-
-        <!-- ========== Notch ========== -->
-        <div class="notch-container">
-            <div class="notch-speaker"></div>
-            <div class="notch-camera"></div>
-        </div>
-
-        <!-- ========== Status ========== -->
-        <div class="status-container">
-            <div class="status-time">
-                <span class="time-hours"></span>:<span class="time-minutes"></span>
-            </div>
-            <div class="status-icons">
-                <img src="images/signal.svg" alt="Signal Icon" class="status-icon">
-                <img src="images/wifi.svg" alt="Wifi Icon" class="status-icon">
-                <img src="images/battery.svg" alt="Battery Icon" class="status-icon">
-            </div>
-        </div>
-
-        <!-- ========== Home ========== -->
-        <div class="home-indicator"></div>
-
-        <!-- ========== Calculator ========== -->
-        <div class="calculator-container">
-
-            <!-- ========== Display ========== -->
-            <div class="display-container">
-                <input type="text" id="display-equation" readonly>
-                <input type="text" id="display-result" readonly value="0">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>iOS Calculator</title>
+        <link rel="icon" href="images/calculator.png" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <!-- ========== Phone ========== -->
+        <div class="phone-container">
+            <!-- ========== History ========== -->
+            <img
+                src="images/history.svg"
+                alt="History Icon"
+                class="history-icon"
+            />
+            <div class="history-container">
+                <div class="history-edit">Edit</div>
+                <div class="history-empty-container">
+                    <img
+                        src="images/history-empty.svg"
+                        alt="History Empty Icon"
+                        class="empty-icon"
+                    />
+                    <div class="empty-text">No History</div>
+                </div>
+                <div class="history-calculation-container"></div>
             </div>
 
-            <!-- ========== Buttons ========== -->
-            <div class="buttons-container">
-                <div class="buttons-grid">
-                    <button class="button clear">AC</button>
-                    <button class="button plus-minus">+/-</button>
-                    <button class="button percent">%</button>
-                    <button class="button operand">÷</button>
+            <!-- ========== Notch ========== -->
+            <div class="notch-container">
+                <div class="notch-speaker"></div>
+                <div class="notch-camera"></div>
+            </div>
 
-                    <button class="button number">7</button>
-                    <button class="button number">8</button>
-                    <button class="button number">9</button>
-                    <button class="button operand">×</button>
+            <!-- ========== Status ========== -->
+            <div class="status-container">
+                <div class="status-time">
+                    <span class="time-hours"></span>:<span
+                        class="time-minutes"
+                    ></span>
+                </div>
+                <div class="status-icons">
+                    <img
+                        src="images/signal.svg"
+                        alt="Signal Icon"
+                        class="status-icon"
+                    />
+                    <img
+                        src="images/wifi.svg"
+                        alt="Wifi Icon"
+                        class="status-icon"
+                    />
+                    <img
+                        src="images/battery.svg"
+                        alt="Battery Icon"
+                        class="status-icon"
+                    />
+                </div>
+            </div>
 
-                    <button class="button number">4</button>
-                    <button class="button number">5</button>
-                    <button class="button number">6</button>
-                    <button class="button operand">-</button>
+            <!-- ========== Home ========== -->
+            <div class="home-indicator"></div>
 
-                    <button class="button number">1</button>
-                    <button class="button number">2</button>
-                    <button class="button number">3</button>
-                    <button class="button operand">+</button>
+            <!-- ========== Calculator ========== -->
+            <div class="calculator-container">
+                <!-- ========== Display ========== -->
+                <div class="display-container">
+                    <input type="text" id="display-equation" readonly />
+                    <input type="text" id="display-result" readonly value="0" />
+                </div>
 
-                    <button class="button number span-two">0</button>
-                    <button class="button decimal">.</button>
-                    <button class="button equals">=</button>
+                <!-- ========== Buttons ========== -->
+                <div class="buttons-container">
+                    <div class="buttons-grid">
+                        <button class="button clear">AC</button>
+                        <button class="button plus-minus">+/-</button>
+                        <button class="button percent">%</button>
+                        <button class="button operand">÷</button>
+
+                        <button class="button number">7</button>
+                        <button class="button number">8</button>
+                        <button class="button number">9</button>
+                        <button class="button operand">×</button>
+
+                        <button class="button number">4</button>
+                        <button class="button number">5</button>
+                        <button class="button number">6</button>
+                        <button class="button operand">-</button>
+
+                        <button class="button number">1</button>
+                        <button class="button number">2</button>
+                        <button class="button number">3</button>
+                        <button class="button operand">+</button>
+
+                        <button class="button number span-two">0</button>
+                        <button class="button decimal">.</button>
+                        <button class="button equals">=</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- ========== Footer ========== -->
-    <div class="footer">© 2024 <a href="https://github.com/nvonil" target="_blank">nvonil</a></div>
+        <!-- ========== Footer ========== -->
+        <div class="footer">
+            © 2024
+            <a href="https://github.com/nvonil" target="_blank">nvonil</a>
+        </div>
 
-    <script src="script.js"></script>
-</body>
+        <script src="script.js"></script>
+    </body>
 </html>

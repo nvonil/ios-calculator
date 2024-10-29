@@ -6,10 +6,10 @@
 }
 
 :root {
-    --black: #1C1C1C;
+    --black: #1c1c1c;
     --dark-gray: #505050;
-    --light-gray: #9F9F9F;
-    --orange: #FF9500;
+    --light-gray: #9f9f9f;
+    --orange: #ff9500;
 }
 
 body {
@@ -38,296 +38,303 @@ body {
     position: relative;
 }
 
-    /* ========== History ========== */
-    .history-icon {
-        position: absolute;
-        transform: translate(25px, 40px);
-        z-index: 1;
-
-        width: 35px;
-        height: 35px;
-
-        cursor: pointer;
-    }
-
-        .history-icon:hover, .history-edit:hover, .entry-delete:hover {
-            filter: brightness(125%);
-        }
-
-    .history-container {
-        overflow-y: auto;
-        position: absolute;
-        transform: translateX(-325px);
-
-        width: 325px;
-        height: 100%;
-
-        transition: transform 0.3s ease-in-out;
-    }
-
-        .history-container.active {
-            background-color: var(--dark-gray);
-
-            transform: translateX(0);
-        }
-
-        .history-edit {
-            position: absolute;
-            transform: translate(275px, 55px);
-
-            color: var(--orange);
-            font-weight: 300;
-    
-            cursor: pointer;
-            display: none;
-        }
-
-        .history-empty-container {
-            align-items: center;
-            flex-direction: column;
-            gap: 5px;
-
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-            .empty-icon {
-                width: 2rem;
-                height: 2rem;
-            }
-
-            .empty-text {
-                color: var(--light-gray);
-                font-size: 1.25rem;
-                font-weight: 300;
-            }
-
-        .history-calculation-container {
-            padding-top: 150px;
-        }
-
-            .calculation-entry {
-                border-bottom: 1px solid var(--light-gray);
-
-                display: flex;
-            }
-
-            .calculation-entry:first-child {
-                border-top: 1px solid var(--light-gray);
-            }
-
-                .entry-delete {
-                    cursor: pointer;
-
-                    padding-left: 25px;
-                }
-    
-                .entry-equation {
-                    color: var(--light-gray);
-                    font-size: 0.85rem;
-                    font-weight: 300;
-
-                    padding: 20px 0 5px 35px;
-                }
-
-                .entry-result {
-                    color: white;
-                    font-weight: 300;
-
-                    padding: 0 0 20px 35px;
-                }
-
-    /* ========== Notch ========== */
-    .notch-container {
-        background-color: black;
-
-        width: 175px;
-        height: 30px;
-
-        border-radius: 0 0 15px 15px;
-
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%);
-        
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-        .notch-speaker {
-            background-color: var(--black);
-
-            width: 45px;
-            height: 5px;
-            
-            border-radius: 10px;
-        }
-
-        .notch-camera {
-            background-color: var(--black);
-
-            width: 15px;
-            height: 15px;
-
-            border-radius: 50%;
-
-            position: absolute;
-            left: calc(50% + 35px);
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-    /* ========== Status ========== */
-    .status-container {
-        display: flex;
-        justify-content: space-between;
-
-        padding: 0.5rem 1.5rem 0.5rem 2.5rem;
-    }
-
-        .status-time {
-            color: white;
-            font-size: 1rem;
-
-            z-index: 1;
-        }
-
-        .status-icons {
-            display: flex;
-            gap: 5px;
-
-            z-index: 1;
-        }
-
-            .status-icon {
-                width: 1.25rem;
-                height: 1.25rem;
-            }
-
-    /* ========== Home ========== */
-    .home-indicator {
-        width: 150px;
-        height: 5px;
-
-        border-radius: 10px;
-
-        background-color: white;
-
-        position: absolute;
-        bottom: 15px;
-        left: 50%;
-        transform: translate(-50%);
-
-        cursor: pointer;
-    }
-
-    /* ========== Calculator ========== */
-    .calculator-container {
-        width: 100%;
-        height: 100%;
-    
-        position: absolute;
-        top: 0;
-        left: 0;
-    
-        transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
-    }
-    
-        .calculator-container.inactive {
-            filter: brightness(50%);
-            transform: translateX(325px);
-    
-            cursor: pointer;
-        }
-
-        /* ========== Display ========== */
-        .display-container {
-            margin: 185px 25px 10px 25px;
-        }
-
-            #display-equation {
-                color: var(--light-gray);
-                font-size: 2rem;
-            }
-
-            #display-result {
-                color: white;
-                font-size: 4.75rem;
-            }
-
-            #display-equation, #display-result {
-                width: 100%;
-
-                background-color: transparent;
-                font-weight: 300;
-                text-align: right;
-
-                border: none;
-
-                cursor: default;
-                outline: none;
-            }
-
-        /* ========== Buttons ========== */
-        .buttons-container {
-            display: flex;
-            justify-content: center;
-        }
-
-            .buttons-grid {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 7.5px;
-            }
-
-                .button {
-                    width: 80px;
-                    height: 80px;
-
-                    border: none;
-                    border-radius: 50%;
-
-                    cursor: pointer;
-
-                    color: white;
-                    font-size: 2rem;
-                    font-weight: 300;
-
-                    transition: filter 0.3s;
-                }
-
-                    .button:hover {
-                        filter: brightness(125%);
-                    }
-
-                    .button:active {
-                        transform: scale(1.01);
-                    }
-
-                .clear, .plus-minus, .percent {
-                    background-color: var(--light-gray);
-                }
-
-                .number, .decimal {
-                    background-color: var(--dark-gray);
-                }
-
-                .operand, .equals {
-                    background-color: var(--orange);
-                    font-size: 3rem;
-
-                    padding-bottom: 5px;
-                }
-
-                .span-two {
-                    grid-column: span 2;
-                    width: 100%;
-
-                    border-radius: 75px;
-                }
+/* ========== History ========== */
+.history-icon {
+    position: absolute;
+    transform: translate(25px, 40px);
+    z-index: 1;
+
+    width: 35px;
+    height: 35px;
+
+    cursor: pointer;
+}
+
+.history-icon:hover,
+.history-edit:hover,
+.entry-delete:hover {
+    filter: brightness(125%);
+}
+
+.history-container {
+    overflow-y: auto;
+    position: absolute;
+    transform: translateX(-325px);
+
+    width: 325px;
+    height: 100%;
+
+    transition: transform 0.3s ease-in-out;
+}
+
+.history-container.active {
+    background-color: var(--dark-gray);
+
+    transform: translateX(0);
+}
+
+.history-edit {
+    position: absolute;
+    transform: translate(275px, 55px);
+
+    color: var(--orange);
+    font-weight: 300;
+
+    cursor: pointer;
+    display: none;
+}
+
+.history-empty-container {
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.empty-icon {
+    width: 2rem;
+    height: 2rem;
+}
+
+.empty-text {
+    color: var(--light-gray);
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+.history-calculation-container {
+    padding-top: 150px;
+}
+
+.calculation-entry {
+    border-bottom: 1px solid var(--light-gray);
+
+    display: flex;
+}
+
+.calculation-entry:first-child {
+    border-top: 1px solid var(--light-gray);
+}
+
+.entry-delete {
+    cursor: pointer;
+
+    padding-left: 25px;
+}
+
+.entry-equation {
+    color: var(--light-gray);
+    font-size: 0.85rem;
+    font-weight: 300;
+
+    padding: 20px 0 5px 35px;
+}
+
+.entry-result {
+    color: white;
+    font-weight: 300;
+
+    padding: 0 0 20px 35px;
+}
+
+/* ========== Notch ========== */
+.notch-container {
+    background-color: black;
+
+    width: 175px;
+    height: 30px;
+
+    border-radius: 0 0 15px 15px;
+
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notch-speaker {
+    background-color: var(--black);
+
+    width: 45px;
+    height: 5px;
+
+    border-radius: 10px;
+}
+
+.notch-camera {
+    background-color: var(--black);
+
+    width: 15px;
+    height: 15px;
+
+    border-radius: 50%;
+
+    position: absolute;
+    left: calc(50% + 35px);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ========== Status ========== */
+.status-container {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 0.5rem 1.5rem 0.5rem 2.5rem;
+}
+
+.status-time {
+    color: white;
+    font-size: 1rem;
+
+    z-index: 1;
+}
+
+.status-icons {
+    display: flex;
+    gap: 5px;
+
+    z-index: 1;
+}
+
+.status-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* ========== Home ========== */
+.home-indicator {
+    width: 150px;
+    height: 5px;
+
+    border-radius: 10px;
+
+    background-color: white;
+
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translate(-50%);
+
+    cursor: pointer;
+}
+
+/* ========== Calculator ========== */
+.calculator-container {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.calculator-container.inactive {
+    filter: brightness(50%);
+    transform: translateX(325px);
+
+    cursor: pointer;
+}
+
+/* ========== Display ========== */
+.display-container {
+    margin: 185px 25px 10px 25px;
+}
+
+#display-equation {
+    color: var(--light-gray);
+    font-size: 2rem;
+}
+
+#display-result {
+    color: white;
+    font-size: 4.75rem;
+}
+
+#display-equation,
+#display-result {
+    width: 100%;
+
+    background-color: transparent;
+    font-weight: 300;
+    text-align: right;
+
+    border: none;
+
+    cursor: default;
+    outline: none;
+}
+
+/* ========== Buttons ========== */
+.buttons-container {
+    display: flex;
+    justify-content: center;
+}
+
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7.5px;
+}
+
+.button {
+    width: 80px;
+    height: 80px;
+
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    color: white;
+    font-size: 2rem;
+    font-weight: 300;
+
+    transition: filter 0.3s;
+}
+
+.button:hover {
+    filter: brightness(125%);
+}
+
+.button:active {
+    transform: scale(1.01);
+}
+
+.clear,
+.plus-minus,
+.percent {
+    background-color: var(--light-gray);
+}
+
+.number,
+.decimal {
+    background-color: var(--dark-gray);
+}
+
+.operand,
+.equals {
+    background-color: var(--orange);
+    font-size: 3rem;
+
+    padding-bottom: 5px;
+}
+
+.span-two {
+    grid-column: span 2;
+    width: 100%;
+
+    border-radius: 75px;
+}
 
 /* ========== Footer ========== */
 .footer {
@@ -336,10 +343,10 @@ body {
     padding: 1.5rem 0 1.5rem 0;
 }
 
-    .footer a {
-        color: var(--dark-gray);
-    }
+.footer a {
+    color: var(--dark-gray);
+}
 
-    .footer a:hover {
-        color: var(--black);
-    }
+.footer a:hover {
+    color: var(--black);
+}
