@@ -4,6 +4,6 @@ This project is a basic calculator inspired by the Apple iOS calculator app. It 
 
 ## Features
 
-- **Basic Arithmetic**: Performs addition, subtraction, multiplication, and division operations
-- **Advanced Input Handling**: Includes decimal calculations, plus/minus toggling, and percentage operations
-- **History Panel**: Allows users to view and manage previous calculations
+-   **Basic Arithmetic**: Performs addition, subtraction, multiplication, and division operations
+-   **Advanced Input Handling**: Includes decimal calculations, plus/minus toggling, and percentage operations
+-   **History Panel**: Allows users to view and manage previous calculations
