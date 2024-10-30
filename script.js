@@ -282,6 +282,7 @@ historyCalculationContainer.addEventListener("click", (event) => {
 });
 
 // ========== Helper Function (History Functionality) ==========
+
 // Resets edit mode
 function resetEditMode() {
     if (isEditMode) {
