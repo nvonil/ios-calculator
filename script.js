@@ -211,12 +211,8 @@ function orderOfOperations(equation) {
 // ========== History Functionality ==========
 const historyIcon = document.querySelector(".history-icon");
 const historyContainer = document.querySelector(".history-container");
-const historyEmptyContainer = document.querySelector(
-    ".history-empty-container"
-);
-const historyCalculationContainer = document.querySelector(
-    ".history-calculation-container"
-);
+const historyEmptyContainer = document.querySelector(".history-empty-container");
+const historyCalculationContainer = document.querySelector(".history-calculation-container");
 const calculatorContainer = document.querySelector(".calculator-container");
 
 historyIcon.addEventListener("click", () => {
@@ -274,8 +270,7 @@ historyCalculationContainer.addEventListener("click", (event) => {
         historyCalculationContainer.removeChild(entryToDelete);
 
         if (historyCalculationContainer.children.length === 0) {
-            document.querySelector(".history-empty-container").style.display =
-                "flex";
+            document.querySelector(".history-empty-container").style.display = "flex";
             historyEdit.style.display = "none";
         }
     }
