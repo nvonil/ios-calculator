@@ -57,20 +57,20 @@ buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
         const buttonContent = e.target.innerText;
 
-        // ========== Number buttons ==========
+        // ========== Number Buttons ==========
         if (button.classList.contains("number")) {
             clearResultIfNeeded();
             currentNumber += buttonContent;
             displayResult.value = equation.join("") + currentNumber;
 
-            // ========== Decimal button ==========
+            // ========== Decimal Button ==========
         } else if (button.classList.contains("decimal")) {
             if (!currentNumber.includes(".")) {
                 currentNumber += ".";
                 displayResult.value = equation.join("") + currentNumber;
             }
 
-            // ========== Operator buttons ==========
+            // ========== Operator Buttons ==========
         } else if (button.classList.contains("operand")) {
             const lastChar = equation[equation.length - 1];
 
@@ -86,7 +86,7 @@ buttons.forEach((button) => {
                 displayResult.value = equation.join("");
             }
 
-            // ========== Equals button ==========
+            // ========== Equals Button ==========
         } else if (button.classList.contains("equals")) {
             if (currentNumber || result) {
                 equation.push(currentNumber);
@@ -122,18 +122,18 @@ buttons.forEach((button) => {
                 hasResult = true;
             }
 
-            // ========== Clear button ==========
+            // ========== Clear Button ==========
         } else if (button.classList.contains("clear")) {
             resetCalculator();
 
-            // ========== Percent button ==========
+            // ========== Percent Button ==========
         } else if (button.classList.contains("percent")) {
             if (!currentNumber.includes("%")) {
                 currentNumber += "%";
                 displayResult.value = equation.join("") + currentNumber;
             }
 
-            // ========== Plus/Minus button ==========
+            // ========== Plus/Minus Button ==========
         } else if (button.classList.contains("plus-minus")) {
             if (currentNumber) {
                 if (currentNumber.startsWith("-")) {
