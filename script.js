@@ -125,6 +125,7 @@ buttons.forEach((button) => {
                 hasResult = true;
             }
         }
+
         // ========== Clear Button ==========
         else if (button.classList.contains("clear")) {
             resetCalculator();
@@ -142,6 +143,7 @@ buttons.forEach((button) => {
                 displayResult.value = equation.join("") + currentNumber;
             }
         }
+
         // ========== Percent Button ==========
         else if (button.classList.contains("percent")) {
             if (!currentNumber.includes("%")) {
