@@ -62,16 +62,18 @@ buttons.forEach((button) => {
             clearResultIfNeeded();
             currentNumber += buttonContent;
             displayResult.value = equation.join("") + currentNumber;
+        }
 
-            // ========== Decimal Button ==========
-        } else if (button.classList.contains("decimal")) {
+        // ========== Decimal Button ==========
+        else if (button.classList.contains("decimal")) {
             if (!currentNumber.includes(".")) {
                 currentNumber += ".";
                 displayResult.value = equation.join("") + currentNumber;
             }
+        }
 
-            // ========== Operator Buttons ==========
-        } else if (button.classList.contains("operand")) {
+        // ========== Operator Buttons ==========
+        else if (button.classList.contains("operand")) {
             const lastChar = equation[equation.length - 1];
 
             if (!currentNumber && (!lastChar || isOperator(lastChar))) {
@@ -85,9 +87,10 @@ buttons.forEach((button) => {
                 equation.push(buttonContent);
                 displayResult.value = equation.join("");
             }
+        }
 
-            // ========== Equals Button ==========
-        } else if (button.classList.contains("equals")) {
+        // ========== Equals Button ==========
+        else if (button.classList.contains("equals")) {
             if (currentNumber || result) {
                 equation.push(currentNumber);
 
@@ -121,20 +124,14 @@ buttons.forEach((button) => {
                 equation = [];
                 hasResult = true;
             }
-
-            // ========== Clear Button ==========
-        } else if (button.classList.contains("clear")) {
+        }
+        // ========== Clear Button ==========
+        else if (button.classList.contains("clear")) {
             resetCalculator();
+        }
 
-            // ========== Percent Button ==========
-        } else if (button.classList.contains("percent")) {
-            if (!currentNumber.includes("%")) {
-                currentNumber += "%";
-                displayResult.value = equation.join("") + currentNumber;
-            }
-
-            // ========== Plus/Minus Button ==========
-        } else if (button.classList.contains("plus-minus")) {
+        // ========== Plus/Minus Button ==========
+        else if (button.classList.contains("plus-minus")) {
             if (currentNumber) {
                 if (currentNumber.startsWith("-")) {
                     currentNumber = currentNumber.slice(1);
@@ -142,6 +139,13 @@ buttons.forEach((button) => {
                     currentNumber = "-" + currentNumber;
                 }
 
+                displayResult.value = equation.join("") + currentNumber;
+            }
+        }
+        // ========== Percent Button ==========
+        else if (button.classList.contains("percent")) {
+            if (!currentNumber.includes("%")) {
+                currentNumber += "%";
                 displayResult.value = equation.join("") + currentNumber;
             }
         }
