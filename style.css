@@ -52,7 +52,8 @@ body {
 
 .history-icon:hover,
 .history-edit:hover,
-.entry-delete:hover {
+.entry-delete:hover,
+.button:hover {
     filter: brightness(125%);
 }
 
@@ -190,14 +191,15 @@ body {
 .status-time {
     color: white;
     font-size: 1rem;
-
-    z-index: 1;
 }
 
 .status-icons {
     display: flex;
     gap: 5px;
+}
 
+.status-time,
+.status-icons {
     z-index: 1;
 }
 
@@ -291,10 +293,6 @@ body {
     font-weight: 300;
 
     transition: filter 0.3s;
-}
-
-.button:hover {
-    filter: brightness(125%);
 }
 
 .button:active {

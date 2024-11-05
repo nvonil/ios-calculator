@@ -217,9 +217,12 @@ function orderOfOperations(equation) {
 // ========== History Functionality ==========
 const historyIcon = document.querySelector(".history-icon");
 const historyContainer = document.querySelector(".history-container");
+const historyEdit = document.querySelector(".history-edit");
 const historyEmptyContainer = document.querySelector(".history-empty-container");
 const historyCalculationContainer = document.querySelector(".history-calculation-container");
 const calculatorContainer = document.querySelector(".calculator-container");
+
+let isEditMode = false;
 
 historyIcon.addEventListener("click", () => {
     historyContainer.classList.toggle("active");
@@ -239,17 +242,6 @@ historyIcon.addEventListener("click", () => {
 
     resetEditMode();
 });
-
-calculatorContainer.addEventListener("click", () => {
-    if (historyContainer.classList.contains("active")) {
-        historyContainer.classList.remove("active");
-        calculatorContainer.classList.remove("inactive");
-        resetEditMode();
-    }
-});
-
-const historyEdit = document.querySelector(".history-edit");
-let isEditMode = false;
 
 historyEdit.addEventListener("click", () => {
     isEditMode = !isEditMode;
@@ -279,6 +271,14 @@ historyCalculationContainer.addEventListener("click", (event) => {
             document.querySelector(".history-empty-container").style.display = "flex";
             historyEdit.style.display = "none";
         }
+    }
+});
+
+calculatorContainer.addEventListener("click", () => {
+    if (historyContainer.classList.contains("active")) {
+        historyContainer.classList.remove("active");
+        calculatorContainer.classList.remove("inactive");
+        resetEditMode();
     }
 });
 
