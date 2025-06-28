@@ -1,4 +1,4 @@
-# ios-calculator
+# iOS Calculator
 
 This project is a calculator inspired by the Apple iOS calculator app. Built with **HTML**, **CSS**, and **JavaScript**, it replicates the visual design and basic functionality of the original app.
 
